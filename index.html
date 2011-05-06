@@ -8,7 +8,7 @@
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #4c97b8;
+      background-color: #8cd7FF;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
@@ -49,54 +49,57 @@
       Simple tasks for bootstrapping the data in your rails application
     </div>
 
-    <p>Inspired by the ar\_fixtures plugin and the fixture loading in Rick Olson's
-mephisto. Most of this was developed while working on Mateme with Baobab Health and Partners in Health.
+    <p>Inspired by the ar_fixtures plugin and the fixture loading in Rick Olson's
+mephisto. Most of this was developed while working on Mateme with Baobab Health and
+Partners in Health.</p>
+<h2>Getting started</h2>
+<p>Add strapless to your <code>Gemfile</code> then:
+<pre>
+$ bundle install
+</pre>
+<p>Now you should have the tasks:</p>
+<pre>
+$ rake -T bootstrap
+(in /path/to/your/rails/project)
+rake db:bootstrap:dump  # Create a set of fixtures from the current database
+rake db:bootstrap:load  # Load initial fixtures (from db/data/*.yml) into the current database
+</pre>
+<p>If you already have data then you can dump it to the db/data folder:</p>
+<pre>
+$ rake db:bootstrap:dump
+</pre>
+<p>This will load all of your ActiveRecord::Base models (in your app/models) and
+generate fixtures for them. Strapless will attempt to use your <code>to_param</code> so that
+the names are pretty. You can override the <code>fixture_name</code> instance method in your
+model if you want something custom.</p>
 
-Add strapless to your <code>Gemfile</code> then:
+<p>Adding these fixtures to your repository makes a lot of sense, unless you have
+crazy amounts of data.</p>
 
-    $ bundle install
+<p>When you get ready to load the data in, Strapless will take all of the fixture
+YAML files in your db/data folder and try to read it in.</p>
 
-Now you should have the tasks:
+<p><span style='color:red'><strong>Warning:</strong> when loading the data from a
+fixture, any existing data will be deleted from the related table.</span></p>
 
-    $ rake -T bootstrap
-    (in /path/to/your/rails/project)
-    rake db:bootstrap:dump  # Create a set of fixtures from the current database
-    rake db:bootstrap:load  # Load initial fixtures (from db/data/*.yml) into the current database
+<pre>
+$ rake db:bootstrap:load
+</pre>
 
-If you already have data then you can dump it to the db/data folder:
+<p>Now you have some data!</p>
 
-    $ rake db:bootstrap:dump
-
-This will load all of your ActiveRecord::Base models (in your app/models) and
-generate fixtures for them. Strapless will attempt to use your to\_param so that
-the names are pretty. You can override the fixture\_name instance method in your
-model if you want something custom.
-
-Adding these fixtures to your repository makes a lot of sense, unless you have
-crazy amounts of data.
-
-When you get ready to load the data in, Strapless will take all of the fixture
-YAML files in your db/data folder and try to read it in.
-
-<span style='color:red'><strong>Warning:</strong> when loading the data from a
-fixture, any existing data will be deleted from the related table.</span>
-
-    $ rake db:bootstrap:load
-
-Now you have some data!
-
-</p><h2>Install</h2>
+<h2>Install</h2>
 <p>If you are not using bundler just:
 
-On [RubyGems](http://rubygems.org/)
-
-    $ gem install strapless
-
-
-The tasks should automatically appear in Rails 3. If you are using Rails 2, then
-you will need to load the tasks manually. In your Rakefile add
-
-    require 'strapless/tasks'
+<p>On <a href="http://rubygems.org/">RubyGems</a>:</p>
+<pre>
+$ gem install strapless
+</pre>
+<p>The tasks should automatically appear in Rails 3. If you are using Rails 2, then
+you will need to load the tasks manually. In your Rakefile add:</p>
+<pre>
+require 'strapless/tasks'
+</pre>
 </p>
 <h2>Authors</h2>
 <p>Jeff Rafter (jeff@socialrange.org)<br/><br/>      </p>
@@ -121,6 +124,6 @@ you will need to load the tasks manually. In your Rakefile add
 
   </div>
 
-  
+
 </body>
 </html>

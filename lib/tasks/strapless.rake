@@ -29,7 +29,7 @@ namespace :db do
       data = File.join(Rails.root, 'db', 'data')
       Dir.mkdir(data) unless File.exists?(data)
       Dir['app/models/*'].each {|f| require f }
-      ActiveRecord::Base.descendants.each do |klass|
+      ActiveRecord::Base.descendants.select{|m| m.table_exists? }.each do |klass|
         klass.dump_fixtures(data)
       end
     end

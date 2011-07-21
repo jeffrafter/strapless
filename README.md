@@ -23,12 +23,12 @@ Now you should have the tasks:
 
     $ rake -T bootstrap
     (in /path/to/your/rails/project)
-    rake db:bootstrap:dump  # Create a set of fixtures from the current database
-    rake db:bootstrap:load  # Load initial fixtures (from db/data/*.yml) into the current database
+    rake db:bootstrap:dump[table]  # Create a set of fixtures from the current database
+    rake db:bootstrap:load[table]  # Load initial fixtures (from db/data/*.yml) into the current database
 
 If you already have data then you can dump it to the db/data folder:
 
-    $ rake db:bootstrap:dump
+    $ rake db:bootstrap:dump[all]
 
 This will load all of your ActiveRecord::Base models (in your app/models) and
 generate fixtures for them. Strapless will attempt to use your to\_param so that
@@ -44,7 +44,7 @@ YAML files in your db/data folder and try to read it in.
 <span style='color:red'><strong>Warning:</strong> when loading the data from a
 fixture, any existing data will be deleted from the related table.</span>
 
-    $ rake db:bootstrap:load
+    $ rake db:bootstrap:load[all]
 
 Now you have some data!
 

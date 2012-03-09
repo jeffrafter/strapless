@@ -48,6 +48,10 @@ fixture, any existing data will be deleted from the related table.</span>
 
 Now you have some data!
 
+You can also specify individual table names, or a list of names, as the arg to load and dump:
+
+    $ rake db:bootstrap:load[pages,users,auths,animals]
+
 Installation
 ------------
 

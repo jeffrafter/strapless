@@ -67,6 +67,22 @@ you will need to load the tasks manually. In your Rakefile add
 
     require 'strapless/tasks'
 
+Oh no! You forgot to add it to your Gemfile and you want to use it on your already running server?
+--------------------------------------------------------------------------------------------------
+Well that was silly wasn't it. Luckily you can get around it (though this breaks all the rules). 
+First install the gem on your server:
+
+    gem install strapless
+   
+Then find the path to the gem, for example:
+
+    ~/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/strapless-0.2.0/lib
+   
+Then from your Rails folder (current) run:
+
+    bundle exec rake --libdir . --libdir "/path/to/strapless/lib/folder" --require 'config/environment' --require 'strapless' --require db:bootstrap:dump[all]
+
+
 Acknowledgements
 ----------------
 

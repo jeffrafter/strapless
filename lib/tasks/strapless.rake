@@ -32,7 +32,7 @@ namespace :db do
       require 'active_record/fixtures'
       data = File.join(Rails.root, 'db', 'data')
       Dir.mkdir(data) unless File.exists?(data)
-      Dir['app/models/*'].each {|f| require f }
+      Dir[Rails.root.join('app/models/*')].each {|f| require f }
       args[:table] = args[:table].split(/,/) unless args[:table] == 'all'
       ActiveRecord::Base.descendants.select{|m| m.table_exists? && (args[:table] == 'all' || args[:table].include?(m.table_name))}.each do |klass|
         klass.dump_fixtures(data)
